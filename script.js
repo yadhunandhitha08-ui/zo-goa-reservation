@@ -317,13 +317,13 @@
       status: 'Single-occupancy re-price requested — confirmation by email. (Sample page: nothing was changed.)'
     },
     care: {
-      eyebrow: 'Travelling with someone who needs care',
+      eyebrow: 'Travelling with your parents',
       title: 'The desk can have this ready before you arrive',
-      text: 'Tell the Care Desk what is needed and it is in place before you check in, rather than something to arrange at the counter once you are here.',
+      text: 'Tell the Care Desk what would help \u2014 a slower pace at breakfast, plainer food, a shorter walk to the pool \u2014 and it is in place before you check in.',
       points: [
-        'A doctor is on call 24 hours, and the nearest hospital is 6 km away',
-        'Step-free rooms have grab bars in the bathroom and beside the bed',
-        'A wheelchair can be waiting in the room, at no charge'
+        'A lift from the lobby, step-free rooms, and grab bars in the bathroom',
+        'The kitchen cooks plain, low-spice food on request, at no extra charge',
+        'A doctor is on call 24 hours, and the nearest hospital is 6 km away'
       ],
       label: 'Talk to the Care Desk',
       action: 'desk'
