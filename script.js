@@ -316,6 +316,31 @@
       action: 'status',
       status: 'Single-occupancy re-price requested — confirmation by email. (Sample page: nothing was changed.)'
     },
+    care: {
+      eyebrow: 'Travelling with someone who needs care',
+      title: 'The desk can have this ready before you arrive',
+      text: 'Tell the Care Desk what is needed and it is in place before you check in, rather than something to arrange at the counter once you are here.',
+      points: [
+        'A doctor is on call 24 hours, and the nearest hospital is 6 km away',
+        'Step-free rooms have grab bars in the bathroom and beside the bed',
+        'A wheelchair can be waiting in the room, at no charge'
+      ],
+      label: 'Talk to the Care Desk',
+      action: 'desk'
+    },
+    quiet: {
+      eyebrow: 'Worried about the noise',
+      title: 'Move to the Quiet Wing',
+      text: 'The Quiet Wing sits away from the pool bar and the beach music, so the evening sounds like the garden rather than the shoreline.',
+      points: [
+        'Soundproofed rooms, set back from the pool bar and the sand',
+        'Quiet hours from 10 PM across the whole wing',
+        'Same rate and the same inclusions — only the room number changes'
+      ],
+      label: 'Move me to the Quiet Wing',
+      action: 'status',
+      status: 'Quiet Wing move requested — the desk confirms by email. (Sample page: nothing was changed.)'
+    },
     other: null   // handled by its own step, with a box to write in
   };
 
