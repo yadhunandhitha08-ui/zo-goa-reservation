@@ -316,18 +316,6 @@
       action: 'status',
       status: 'Single-occupancy re-price requested — confirmation by email. (Sample page: nothing was changed.)'
     },
-    cost: {
-      eyebrow: 'The trip costs too much',
-      title: 'There are cheaper weeks',
-      text: 'January is quieter in Candolim and the same room runs lower. A room change can take it lower still.',
-      points: [
-        '9–13 January is ₹2,360 less than your booking',
-        'A Garden Room on your dates saves ₹3,540',
-        'Both together bring the total under ₹35,000'
-      ],
-      label: 'See lower-cost dates',
-      action: 'dates'
-    },
     other: null   // handled by its own step, with a box to write in
   };
 
