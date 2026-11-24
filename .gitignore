@@ -1,0 +1,6 @@
+dist/
+.build/
+.DS_Store
+
+# PNG masters stay local; the site ships the JPEG conversions
+images/*.png

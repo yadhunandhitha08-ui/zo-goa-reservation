@@ -107,30 +107,153 @@
 
   /* ------------------------------------------------------------------
      04. THE ROOM PHOTOGRAPH
-     Markers describe what is in the frame; the three thumbnails swap
-     the photograph itself. Markers belong to the first view only.
+     Every view carries its own markers, caption, heading and list, so
+     switching the thumbnail changes the whole panel rather than just
+     the image. Content lives here; the markup is rebuilt from it.
      ------------------------------------------------------------------ */
-  var spots = document.querySelectorAll('.spot');
-  var spotLayer = document.getElementById('roomSpots');
-  var detailTitle = document.getElementById('roomDetailTitle');
-  var detailText = document.getElementById('roomDetailText');
-  var roomPhoto = document.getElementById('roomPhoto');
-  var views = document.querySelectorAll('.view');
+  var ROOM_VIEWS = {
+    room: {
+      src: 'images/ocean-view-suite.jpg',
+      alt: 'Room 214 at ZO Hotels Goa: a king bed with a cane headboard, open balcony doors to a sea view, and a seating corner by the window.',
+      caption: 'Room 214 · 420 sq ft · sea-facing balcony',
+      listTitle: 'In Room 214',
+      detailTitle: 'Four things to look at',
+      detailText: 'Choose a marker on the image to see that part of the room described, measured and confirmed against what is in your booking.',
+      list: [
+        '420 sq ft, second floor, sea side',
+        'King bed with cotton linen and a day bench',
+        'Private balcony with two chairs',
+        'Rain shower, bathtub and Goan toiletries',
+        'Split air conditioning and a ceiling fan',
+        'Wi-Fi in the room, at the pool and in the lounge',
+        'Mini bar restocked daily — soft drinks included',
+        'Tea, filter coffee and still water, replenished',
+        'Safe, iron, smart TV and a writing desk',
+        'Housekeeping twice daily, turndown at seven'
+      ],
+      spots: [
+        { x: 82, y: 56, title: 'King bed, cotton linen', text: 'A single king with a cane headboard, turned down each evening. Charging points and a reading light on both sides.' },
+        { x: 46, y: 61, title: 'Private balcony', text: 'Two cane chairs and a low table facing the sea. The doors slide fully open, and the balcony is yours alone.' },
+        { x: 11, y: 71, title: 'Reading corner', text: 'A lounge chair, side table and floor lamp by the window — where breakfast arrives if you order it in.' },
+        { x: 76, y: 33, title: 'Bedside pendant', text: 'Handblown glass over each bedside table, dimmable, with two plug points and a USB socket below.' }
+      ]
+    },
 
-  function clearSpots() {
-    Array.prototype.forEach.call(spots, function (s) {
-      s.setAttribute('aria-pressed', 'false');
+    angle: {
+      src: 'images/room-second-angle.jpg',
+      alt: 'A second angle of the Deluxe Ocean-View room, showing the dressing console, the day bench at the foot of the bed and the doors folded back to the terrace.',
+      caption: 'Room 214 · from the dressing wall, doors folded back',
+      listTitle: 'From this corner',
+      detailTitle: 'Four more things to look at',
+      detailText: 'The same room from the dressing wall, photographed on the same morning. Tap a marker to see what sits in this half of it.',
+      list: [
+        'Writing desk and dressing console, mirror above',
+        'Day bench at the foot of the bed, for an open suitcase',
+        'Doors that fold back flat into the wall',
+        'Flat threshold between the room and the terrace',
+        'Ceiling fan and split air conditioning, either alone',
+        'Bedside lamps on dimmers, one on each side',
+        'Woven rug underfoot, laid flat to the floor',
+        'Terrace seating beyond the doors, shaded until four'
+      ],
+      spots: [
+        { x: 9,  y: 62, title: 'Writing desk and console', text: 'A full-width console with a mirror above and drawers below — the writing desk listed on your booking. The stool tucks underneath.' },
+        { x: 58, y: 73, title: 'Day bench', text: 'At the foot of the bed, long enough for an open suitcase, so nothing needs to go on the floor.' },
+        { x: 41, y: 42, title: 'Doors, folded back', text: 'The panels slide into the wall and the floor runs straight out to the terrace, with no lip or step between the two.' },
+        { x: 58, y: 6,  title: 'Fan and air conditioning', text: 'A ceiling fan under the cane soffit, with split air conditioning behind it. Either can run on its own.' }
+      ]
+    },
+
+    balcony: {
+      src: 'images/balcony-view.jpg?v=2',
+      alt: 'The balcony of Room 214 at sunset: two cane armchairs either side of a round table set with tea and fruit, with the pool, the palms and the sea beyond.',
+      caption: 'The balcony of Room 214 · six in the evening, looking over the pool',
+      listTitle: 'On your balcony',
+      detailTitle: 'Four things to look at',
+      detailText: 'Your own balcony, photographed at six in the evening. Tap a marker to see what is out here.',
+      list: [
+        'Two deep cane armchairs with cushions, facing the water',
+        'Round teak table low enough to reach from either chair',
+        'Carved balustrade at chest height, no gap beneath it',
+        'Level with the room — no step out onto the balcony',
+        'The pool directly below, the sea past the palm line',
+        'Bougainvillea along the arch, in flower through December',
+        'A lantern over the doorway, lit from dusk',
+        'Shaded until four, then open sun until the light goes'
+      ],
+      spots: [
+        { x: 17, y: 72, title: 'Cane armchairs', text: 'Two of them, deep enough to sit in for an hour, with solid arms to push up from. They face the water rather than each other.' },
+        { x: 50, y: 70, title: 'The teak table', text: 'Round, and low enough to reach without standing. In this photograph it is set with tea and fruit from the kitchen downstairs.' },
+        { x: 80, y: 52, title: 'Balustrade and the pool', text: 'Carved stone at chest height with no gap underneath. The pool sits directly below, and the sea starts past the palms.' },
+        { x: 14, y: 10, title: 'The lantern', text: 'Pierced brass above the doorway, lit from dusk, so the balcony stays usable without turning the room lights back on.' }
+      ]
+    }
+  };
+
+  var spotLayer   = document.getElementById('roomSpots');
+  var detailTitle = document.getElementById('roomDetailTitle');
+  var detailText  = document.getElementById('roomDetailText');
+  var roomPhoto   = document.getElementById('roomPhoto');
+  var roomCaption = document.getElementById('roomCaption');
+  var listTitleEl = document.getElementById('roomListTitle');
+  var ticksEl     = document.getElementById('roomTicks');
+  var views       = document.querySelectorAll('.view');
+
+  /* Markers are rebuilt for each view, so the handler is bound once here
+     and reads its copy from the button it was created with. */
+  function buildSpots(view) {
+    if (!spotLayer) return;
+    spotLayer.innerHTML = '';
+
+    view.spots.forEach(function (s) {
+      var b = document.createElement('button');
+      b.className = 'spot';
+      b.type = 'button';
+      b.style.left = s.x + '%';
+      b.style.top = s.y + '%';
+      b.setAttribute('aria-pressed', 'false');
+
+      var label = document.createElement('span');
+      label.className = 'visually-hidden';
+      label.textContent = s.title;
+      b.appendChild(label);
+
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(spotLayer.querySelectorAll('.spot'), function (other) {
+          other.setAttribute('aria-pressed', String(other === b));
+        });
+        if (detailTitle) detailTitle.textContent = s.title;
+        if (detailText) detailText.textContent = s.text;
+      });
+
+      spotLayer.appendChild(b);
     });
   }
 
-  Array.prototype.forEach.call(spots, function (spot) {
-    spot.addEventListener('click', function () {
-      clearSpots();
-      spot.setAttribute('aria-pressed', 'true');
-      if (detailTitle) detailTitle.textContent = spot.dataset.title;
-      if (detailText) detailText.innerHTML = spot.dataset.text;
-    });
-  });
+  function renderView(key) {
+    var view = ROOM_VIEWS[key];
+    if (!view) return;
+
+    if (roomPhoto) {
+      roomPhoto.src = view.src;
+      roomPhoto.alt = view.alt;
+    }
+    if (roomCaption) roomCaption.textContent = view.caption;
+    if (listTitleEl) listTitleEl.textContent = view.listTitle;
+    if (detailTitle) detailTitle.textContent = view.detailTitle;
+    if (detailText) detailText.textContent = view.detailText;
+
+    if (ticksEl) {
+      ticksEl.innerHTML = '';
+      view.list.forEach(function (item) {
+        var li = document.createElement('li');
+        li.textContent = item;
+        ticksEl.appendChild(li);
+      });
+    }
+
+    buildSpots(view);
+  }
 
   Array.prototype.forEach.call(views, function (view) {
     view.addEventListener('click', function () {
@@ -138,28 +261,12 @@
         other.classList.toggle('is-active', other === view);
         other.setAttribute('aria-pressed', String(other === view));
       });
-
-      if (roomPhoto) {
-        roomPhoto.src = view.dataset.src;
-        roomPhoto.alt = view.dataset.alt;
-      }
-
-      // Only the first view is mapped, so hide the markers on the others.
-      var showSpots = view.dataset.spots === 'on';
-      if (spotLayer) {
-        if (showSpots) spotLayer.removeAttribute('hidden');
-        else spotLayer.setAttribute('hidden', '');
-      }
-      if (!showSpots) {
-        clearSpots();
-        if (detailTitle) detailTitle.textContent = 'Another look at the same room';
-        if (detailText) {
-          detailText.textContent =
-            'Taken on the same morning as the main photograph. Return to the first view to see the markers.';
-        }
-      }
+      renderView(view.dataset.view);
     });
   });
+
+  /* First paint, so the panel and the photograph always agree. */
+  if (views.length) renderView(views[0].dataset.view);
 
 
   /* ------------------------------------------------------------------
@@ -321,12 +428,39 @@
       title: 'The desk can have this ready before you arrive',
       text: 'Tell the Care Desk what would help \u2014 a slower pace at breakfast, plainer food, a shorter walk to the pool \u2014 and it is in place before you check in.',
       points: [
-        'A lift from the lobby, step-free rooms, and grab bars in the bathroom',
+        'A lift from the lobby to the door of Room 214, and no step into the room',
         'The kitchen cooks plain, low-spice food on request, at no extra charge',
-        'A doctor is on call 24 hours, and the nearest hospital is 6 km away'
+        'Breakfast on the terrace, or brought up to the room instead'
       ],
       label: 'Talk to the Care Desk',
       action: 'desk'
+    },
+    doctor: {
+      eyebrow: 'If a doctor is needed',
+      title: 'A doctor at any hour, a hospital six kilometres away',
+      text: 'The desk does not send you out looking for help. A doctor attends in the room, and a car stays on the property overnight so nobody is waiting for a taxi at three in the morning.',
+      points: [
+        'A doctor is on call 24 hours and attends in your room, not the lobby',
+        'The nearest hospital is 6 km \u2014 about fifteen minutes, and the desk calls ahead',
+        'Medicines, allergies and conditions are held at the desk, with your consent',
+        'A car and driver stay on the property through the night'
+      ],
+      label: 'Talk to the Care Desk',
+      action: 'desk'
+    },
+    fittings: {
+      eyebrow: 'Fittings for the bathroom',
+      title: 'Fitted before you arrive, at no charge',
+      text: 'Room 214 is fitted out before you land, so there is nothing to arrange at the desk and nothing added to your folio for it.',
+      points: [
+        'Grab bars beside the WC and inside the rain shower',
+        'A teak shower seat and a raised WC seat, fitted to the room',
+        'Non-slip mats in the bathroom and at the step out of the bathtub',
+        'Photographed once fitted and sent to you, so you see it before you fly'
+      ],
+      label: 'Request these fittings',
+      action: 'status',
+      status: 'Bathroom fittings requested for Room 214 \u2014 housekeeping confirms by email with a photograph. (Sample page: nothing was changed.)'
     },
     quiet: {
       eyebrow: 'Worried about the noise',

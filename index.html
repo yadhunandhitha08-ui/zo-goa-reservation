@@ -187,7 +187,7 @@
         <header class="section__head">
           <p class="eyebrow eyebrow--clay">Room 214, second floor, sea side</p>
           <h2 class="section__title" id="roomTitle">The room you booked</h2>
-          <p class="section__sub">Photographed this month, in daylight, with no wide-angle lens. Tap any marker to see what is in the frame.</p>
+          <p class="section__sub">Photographed this month, in daylight, with no wide-angle lens. Switch the view, then tap any marker to see what is in the frame.</p>
         </header>
 
         <div class="room">
@@ -198,30 +198,9 @@
                  alt="Room 214 at ZO Hotels Goa: a king bed with a cane headboard, open balcony doors to a sea view, and a seating corner by the window."
                  width="1672" height="941" loading="lazy">
 
-            <div class="room__spots" id="roomSpots">
-              <button class="spot" type="button" style="left:82%; top:56%"
-                      data-title="King bed, cotton linen"
-                      data-text="A single king with a cane headboard, turned down each evening. Charging points and a reading light on both sides."
-                      aria-pressed="false"><span class="visually-hidden">King bed, cotton linen</span></button>
+            <div class="room__spots" id="roomSpots"></div>
 
-              <button class="spot" type="button" style="left:46%; top:61%"
-                      data-title="Private balcony"
-                      data-text="Two cane chairs and a low table facing the sea. The doors slide fully open, and the balcony is yours alone."
-                      aria-pressed="false"><span class="visually-hidden">Private balcony</span></button>
-
-              <button class="spot" type="button" style="left:11%; top:71%"
-                      data-title="Reading corner"
-                      data-text="A lounge chair, side table and floor lamp by the window &mdash; where breakfast arrives if you order it in."
-                      aria-pressed="false"><span class="visually-hidden">Reading corner</span></button>
-
-
-              <button class="spot" type="button" style="left:76%; top:33%"
-                      data-title="Bedside pendant"
-                      data-text="Handblown glass over each bedside table, dimmable, with two plug points and a USB socket below."
-                      aria-pressed="false"><span class="visually-hidden">Bedside pendant</span></button>
-            </div>
-
-            <figcaption class="room__caption">Room 214 &middot; 420 sq ft &middot; sea-facing balcony</figcaption>
+            <figcaption class="room__caption" id="roomCaption">Room 214 &middot; 420 sq ft &middot; sea-facing balcony</figcaption>
           </figure>
 
           <!-- Detail panel, updated by the markers -->
@@ -235,37 +214,20 @@
               </p>
             </div>
 
-            <h3 class="room__list-title">In Room 214</h3>
-            <ul class="ticks">
-              <li>420 sq ft, second floor, sea side</li>
-              <li>King bed with cotton linen and a day bench</li>
-              <li>Private balcony with two chairs</li>
-              <li>Rain shower, bathtub and Goan toiletries</li>
-              <li>Split air conditioning and a ceiling fan</li>
-              <li>Wi-Fi in the room, at the pool and in the lounge</li>
-              <li>Mini bar restocked daily &mdash; soft drinks included</li>
-              <li>Tea, filter coffee and still water, replenished</li>
-              <li>Safe, iron, smart TV and a writing desk</li>
-              <li>Housekeeping twice daily, turndown at seven</li>
-            </ul>
+            <h3 class="room__list-title" id="roomListTitle">In Room 214</h3>
+            <ul class="ticks" id="roomTicks"></ul>
 
             <!-- Switch between three views of the same room -->
             <div class="room__views" role="group" aria-label="Other views of Room 214">
-              <button class="view is-active" type="button" data-src="images/ocean-view-suite.jpg"
-                      data-alt="Room 214 at ZO Hotels Goa: a king bed with a cane headboard, open balcony doors to a sea view, and a seating corner by the window."
-                      data-spots="on" aria-pressed="true">
+              <button class="view is-active" type="button" data-view="room" aria-pressed="true">
                 <img src="images/ocean-view-suite.jpg" alt="" loading="lazy">
                 <span>The room</span>
               </button>
-              <button class="view" type="button" data-src="images/room-second-angle.jpg"
-                      data-alt="A second angle of the Deluxe Ocean-View room, showing the writing desk and the doors to the balcony."
-                      data-spots="off" aria-pressed="false">
+              <button class="view" type="button" data-view="angle" aria-pressed="false">
                 <img src="images/room-second-angle.jpg" alt="" loading="lazy">
                 <span>Second angle</span>
               </button>
-              <button class="view" type="button" data-src="images/balcony-view.jpg?v=2"
-                      data-alt="The balcony of Room 214 at sunset: two cane armchairs either side of a round table set with tea and fruit, with the pool, the palms and the sea beyond."
-                      data-spots="off" aria-pressed="false">
+              <button class="view" type="button" data-view="balcony" aria-pressed="false">
                 <img src="images/balcony-view.jpg?v=2" alt="" loading="lazy">
                 <span>Balcony view</span>
               </button>
@@ -368,7 +330,7 @@
 
           <div class="around__body">
             <p class="eyebrow eyebrow--clay">Candolim, North Goa</p>
-            <h2 class="section__title" id="aroundTitle">How far everything is</h2>
+            <h2 class="section__title" id="aroundTitle">Six minutes to the sand, forty to the plane</h2>
             <p class="section__sub">Measured from the hotel gate, in traffic you would actually meet in December.</p>
 
             <ul class="distances">
@@ -435,7 +397,7 @@
       <div class="shell">
         <header class="section__head">
           <p class="eyebrow eyebrow--clay">Reservation ZOG-48217</p>
-          <h2 class="section__title" id="manageTitle">Change anything you need to</h2>
+          <h2 class="section__title" id="manageTitle">Three things you can still change</h2>
           <p class="section__sub">Dates, room and extras can all move. Changes made before 5 December carry no fee, and your nightly rate travels with you.</p>
         </header>
 
@@ -550,12 +512,14 @@
         <p class="modal__sub">Choose the closest one and we will show you what can be done about it.</p>
 
         <ul class="reasons" id="reasonList">
-          <li><button class="reason" type="button" data-key="price">I found a better price elsewhere</button></li>
           <li><button class="reason" type="button" data-key="dates">My travel dates have moved</button></li>
+          <li><button class="reason" type="button" data-key="care">I am travelling with my parents</button></li>
+          <li><button class="reason" type="button" data-key="doctor">They might need a doctor while we are there</button></li>
+          <li><button class="reason" type="button" data-key="fittings">They need bathroom fittings</button></li>
+          <li><button class="reason" type="button" data-key="quiet">I am worried it will be too loud</button></li>
+          <li><button class="reason" type="button" data-key="price">I found a better price elsewhere</button></li>
           <li><button class="reason" type="button" data-key="room">I booked the wrong room type</button></li>
           <li><button class="reason" type="button" data-key="guests">Fewer of us are travelling</button></li>
-          <li><button class="reason" type="button" data-key="care">I am travelling with my parents</button></li>
-          <li><button class="reason" type="button" data-key="quiet">I am worried it will be too loud</button></li>
           <li><button class="reason" type="button" data-key="other">Something else</button></li>
         </ul>
       </div>
