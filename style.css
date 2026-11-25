@@ -626,9 +626,22 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
   overflow: hidden;
   background: var(--card);
 }
-.room__photo { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+/* The photograph keeps its own 1672x941 ratio, so object-fit crops nothing
+   and a marker's percentage means the same thing as it does in the file.
+   The marker layer is pinned to the photograph, not to the whole figure —
+   pinning it to the figure stretched every y by the caption's height. */
+.room__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+}
 
-.room__spots { position: absolute; inset: 0; }
+.room__spots {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  aspect-ratio: 1672 / 941;
+}
 .room__spots[hidden] { display: none; }
 
 /* Markers: a gold ring that pulses once on load, then stays still */
@@ -1306,4 +1319,196 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* ==========================================================================
+   17. ADDITIONS — honest bill blocks, amenities on request, the countdown,
+       and the quieter luxury devices: a lozenge rule, section numerals and
+       a hairline lattice instead of decorative italics.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------
+   17.1  The bill, in three blocks
+   What the rate covers, what is charged only on use, and the tax. The
+   group labels carry the distinction, so "Included" can never be read
+   as covering a line that is in fact chargeable.
+   -------------------------------------------------------------------- */
+.bill__set { margin-top: 1.3rem; }
+.bill__set:first-of-type { margin-top: 0.9rem; }
+
+.bill__group {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--clay-light);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(247, 238, 231, 0.34);
+}
+
+.bill__aside {
+  margin-top: 0.65rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--clay-light);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--on-night-mute);
+}
+
+.bill__rows--sum {
+  margin-top: 1.6rem;
+  padding-top: 0.1rem;
+  border-top: 1px solid rgba(247, 238, 231, 0.45);
+}
+
+/* --------------------------------------------------------------------
+   17.2  Amenities on request
+   A hairline lattice: 1px grid gaps over a line-coloured ground, so the
+   rules are the structure rather than an ornament laid on top.
+   -------------------------------------------------------------------- */
+.request-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  margin-top: 2.3rem;
+  background: var(--line-firm);
+  border: 1px solid var(--line-firm);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.rq {
+  padding: 1.4rem 1.45rem;
+  background: var(--card);
+  transition: background 0.22s ease;
+}
+.rq:hover { background: var(--card-hover); }
+.rq__k {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.rq__v {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.56;
+  color: var(--ink-dim);
+}
+
+/* --------------------------------------------------------------------
+   17.3  A lozenge rule, replacing the plain 56px bar
+   -------------------------------------------------------------------- */
+.rule {
+  position: relative;
+  width: 132px;
+  height: 9px;
+  margin: 1.6rem auto 0;
+  background: transparent;
+  opacity: 1;
+}
+.rule::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 4px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clay) 20%,
+                                     var(--clay) 80%, transparent);
+  opacity: 0.6;
+}
+.rule::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 1px;
+  width: 7px; height: 7px;
+  margin-left: -3.5px;
+  transform: rotate(45deg);
+  background: var(--clay);
+}
+.rule--light::before {
+  background: linear-gradient(90deg, transparent, var(--clay-light) 20%,
+                                     var(--clay-light) 80%, transparent);
+  opacity: 0.75;
+}
+.rule--light::after { background: var(--clay-light); }
+
+/* --------------------------------------------------------------------
+   17.4  Section numerals
+   A numeral above each section title, set in the body face at caption
+   size so it reads as a mark rather than a heading.
+   -------------------------------------------------------------------- */
+main { counter-reset: zosec; }
+.section { counter-increment: zosec; }
+.section__head .section__title::before {
+  content: counter(zosec, upper-roman);
+  display: block;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--clay);
+}
+
+/* --------------------------------------------------------------------
+   17.5  The closing band — centred countdown, one line, one quote
+   -------------------------------------------------------------------- */
+.closing { text-align: center; }
+.closing__wash {
+  background: linear-gradient(180deg,
+    rgba(21, 33, 58, 0.66) 0%,
+    rgba(21, 33, 58, 0.86) 62%,
+    rgba(21, 33, 58, 0.94) 100%);
+}
+.closing__inner { margin-inline: auto; }
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+}
+.countdown__n {
+  font-family: var(--font-display);
+  font-size: clamp(4.4rem, 15vw, 8.6rem);
+  font-weight: 600;
+  line-height: 0.84;
+  color: var(--on-night);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.countdown__n--word { font-size: clamp(2.6rem, 9vw, 4.8rem); }
+.countdown__l {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--clay-light);
+}
+
+.closing__text {
+  margin-inline: auto;
+  margin-top: 1.5rem;
+  max-width: 34rem;
+}
+.closing__text a {
+  color: var(--on-night);
+  text-decoration: none;
+  border-bottom: 1px solid var(--clay-light);
+  padding-bottom: 1px;
+}
+.closing__text a:hover { border-bottom-color: var(--on-night); }
+
+.closing__title {
+  margin-top: 1.5rem;
+  margin-inline: auto;
+  max-width: 22ch;
+  font-size: clamp(1.55rem, 3.8vw, 2.35rem);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--on-night);
 }

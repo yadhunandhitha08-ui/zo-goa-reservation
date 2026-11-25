@@ -4,3 +4,6 @@ dist/
 
 # PNG masters stay local; the site ships the JPEG conversions
 images/*.png
+
+# local dev only
+.claude/

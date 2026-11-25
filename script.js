@@ -132,35 +132,37 @@
         'Housekeeping twice daily, turndown at seven'
       ],
       spots: [
-        { x: 82, y: 56, title: 'King bed, cotton linen', text: 'A single king with a cane headboard, turned down each evening. Charging points and a reading light on both sides.' },
-        { x: 46, y: 61, title: 'Private balcony', text: 'Two cane chairs and a low table facing the sea. The doors slide fully open, and the balcony is yours alone.' },
-        { x: 11, y: 71, title: 'Reading corner', text: 'A lounge chair, side table and floor lamp by the window — where breakfast arrives if you order it in.' },
-        { x: 76, y: 33, title: 'Bedside pendant', text: 'Handblown glass over each bedside table, dimmable, with two plug points and a USB socket below.' }
+        { x: 82, y: 62, title: 'King bed, cotton linen', text: 'A single king with a cane headboard, turned down each evening. Charging points and a reading light on both sides.' },
+        { x: 46, y: 67, title: 'Private balcony', text: 'Two cane chairs and a low table facing the sea. The doors slide fully open, and the balcony is yours alone.' },
+        { x: 11, y: 77, title: 'Reading corner', text: 'A lounge chair, side table and floor lamp by the window — where breakfast arrives if you order it in.' },
+        { x: 76, y: 39, title: 'Bedside pendant', text: 'Handblown glass over each bedside table, dimmable, with two plug points and a USB socket below.' }
       ]
     },
 
-    angle: {
-      src: 'images/room-second-angle.jpg',
-      alt: 'A second angle of the Deluxe Ocean-View room, showing the dressing console, the day bench at the foot of the bed and the doors folded back to the terrace.',
-      caption: 'Room 214 · from the dressing wall, doors folded back',
-      listTitle: 'From this corner',
-      detailTitle: 'Four more things to look at',
-      detailText: 'The same room from the dressing wall, photographed on the same morning. Tap a marker to see what sits in this half of it.',
+    bath: {
+      src: 'images/bathroom.jpg',
+      alt: 'The bathroom of Room 214: a walk-in rain shower behind glass, a freestanding bath by the window, two robes on hooks and a double marble vanity under lit mirrors.',
+      caption: 'The bathroom of Room 214 \u00b7 marble, with a walk-in shower',
+      listTitle: 'In the bathroom',
+      detailTitle: 'Five things to look at',
+      detailText: 'The bathroom of Room 214, photographed on the same morning. Tap a marker to see what is in the frame.',
       list: [
-        'Writing desk and dressing console, mirror above',
-        'Day bench at the foot of the bed, for an open suitcase',
-        'Doors that fold back flat into the wall',
-        'Flat threshold between the room and the terrace',
-        'Ceiling fan and split air conditioning, either alone',
-        'Bedside lamps on dimmers, one on each side',
-        'Woven rug underfoot, laid flat to the floor',
-        'Terrace seating beyond the doors, shaded until four'
+        'Walk-in shower with no step to cross',
+        'Handheld shower on a sliding rail',
+        'Deep soaking bath, non-slip mat at the step',
+        'Grab bars fitted free, on request',
+        'Two basins, a lit mirror and a magnifying one',
+        'Two robes and two pairs of slippers',
+        'Dryer, comb, razor, dental and shave kits',
+        'Goan toiletries, refilled each day',
+        'Towels changed twice daily'
       ],
       spots: [
-        { x: 9,  y: 62, title: 'Writing desk and console', text: 'A full-width console with a mirror above and drawers below — the writing desk listed on your booking. The stool tucks underneath.' },
-        { x: 58, y: 73, title: 'Day bench', text: 'At the foot of the bed, long enough for an open suitcase, so nothing needs to go on the floor.' },
-        { x: 41, y: 42, title: 'Doors, folded back', text: 'The panels slide into the wall and the floor runs straight out to the terrace, with no lip or step between the two.' },
-        { x: 58, y: 6,  title: 'Fan and air conditioning', text: 'A ceiling fan under the cane soffit, with split air conditioning behind it. Either can run on its own.' }
+        { x: 30, y: 52, title: 'Walk-in shower', text: 'The floor runs straight in \u2014 there is no lip or step to cross. A rain head overhead and a handheld shower on a sliding rail, so it can be used seated.' },
+        { x: 14, y: 80, title: 'The bath', text: 'Deep enough to sit in properly, with a non-slip mat at the step. Grab bars are fitted beside it free, if you ask before you arrive.' },
+        { x: 70, y: 52, title: 'Double vanity', text: 'Two basins in marble, a lit mirror across the whole wall and a magnifying mirror on an arm. Plug points at counter height on both sides.' },
+        { x: 46, y: 42, title: 'Robes and slippers', text: 'Two waffle robes on the hooks and two pairs of slippers below, replaced every day.' },
+        { x: 90, y: 66, title: 'The tray', text: 'Dryer, wooden comb, razor, dental and shave kits, laid out and replaced daily. Nothing on it is charged.' }
       ]
     },
 
@@ -182,10 +184,10 @@
         'Shaded until four, then open sun until the light goes'
       ],
       spots: [
-        { x: 17, y: 72, title: 'Cane armchairs', text: 'Two of them, deep enough to sit in for an hour, with solid arms to push up from. They face the water rather than each other.' },
-        { x: 50, y: 70, title: 'The teak table', text: 'Round, and low enough to reach without standing. In this photograph it is set with tea and fruit from the kitchen downstairs.' },
-        { x: 80, y: 52, title: 'Balustrade and the pool', text: 'Carved stone at chest height with no gap underneath. The pool sits directly below, and the sea starts past the palms.' },
-        { x: 14, y: 10, title: 'The lantern', text: 'Pierced brass above the doorway, lit from dusk, so the balcony stays usable without turning the room lights back on.' }
+        { x: 17, y: 78, title: 'Cane armchairs', text: 'Two of them, deep enough to sit in for an hour, with solid arms to push up from. They face the water rather than each other.' },
+        { x: 50, y: 76, title: 'The teak table', text: 'Round, and low enough to reach without standing. In this photograph it is set with tea and fruit from the kitchen downstairs.' },
+        { x: 80, y: 58, title: 'Balustrade and the pool', text: 'Carved stone at chest height with no gap underneath. The pool sits directly below, and the sea starts past the palms.' },
+        { x: 14, y: 15, title: 'The lantern', text: 'Pierced brass above the doorway, lit from dusk, so the balcony stays usable without turning the room lights back on.' }
       ]
     }
   };
@@ -376,107 +378,92 @@
   var ANSWERS = {
     price: {
       eyebrow: 'A better price elsewhere',
-      title: 'Here is what your rate is made of',
-      text: 'Most sites quote the room on its own and add tax and extras at the end, so the two numbers are rarely comparing the same stay. Yours is broken out line by line.',
+      title: 'What your rate is made of',
+      text: 'Other sites quote the room alone and add tax at the end, so two numbers rarely cover the same stay. Yours is set out line by line.',
       points: [
-        '₹34,000 is the room itself — ₹8,500 for each of the four nights',
-        'Breakfast, both Mopa airport runs, the pool and the spa sit inside that',
-        'GST at 18% is ₹6,120, set by law and listed on every Indian hotel bill'
+        '\u20b934,000 is the room \u2014 \u20b98,500 a night, four nights',
+        'Breakfast, both Mopa runs, the pool and Wi-Fi sit inside that',
+        'GST at 18% is \u20b96,120, set by law',
+        'A cheaper rate elsewhere may drop the transfer, or may not be refundable'
       ],
       label: 'See the full breakdown',
       action: 'bill'
     },
+
     dates: {
       eyebrow: 'Dates have moved',
-      title: 'Move the stay, keep the rate',
-      text: 'Your ₹8,500 nightly rate travels with you to any open date up to 31 March, with no change fee.',
+      title: 'Move the stay instead',
+      text: 'No fee to move before 5 December. Prices vary by date, so you see the new total before anything is confirmed.',
       points: [
-        'Three windows are open at the same total',
-        '9–13 January returns ₹2,360 to your card',
-        'Changes before 5 December carry no fee'
+        'Three windows are open now',
+        '9\u201313 January is \u20b92,360 less',
+        '19\u201323 December is \u20b92,360 more',
+        'Held 24 hours while you decide. Nothing is charged.'
       ],
       label: 'See open dates',
       action: 'dates'
     },
+
     room: {
-      eyebrow: 'The room is not right',
+      eyebrow: 'Wrong room type',
       title: 'Take a different room',
-      text: 'Two other rooms are open for 12–16 December, and the difference settles on the same card.',
+      text: 'Two others are open for your dates. The difference settles on the same card.',
       points: [
-        'Garden Room returns ₹3,540 to you',
-        'Pool Suite with a private deck is ₹5,900 more',
-        'Your inclusions move across unchanged'
+        'Garden Room returns \u20b93,540',
+        'Pool Suite is \u20b95,900 more',
+        'Your inclusions move across unchanged',
+        'Subject to the room still being free when you confirm'
       ],
       label: 'See the other rooms',
       action: 'rooms'
     },
-    guests: {
-      eyebrow: 'Fewer of you are coming',
-      title: 'Re-price it for one',
-      text: 'A single-occupancy rate on the same room brings the total down, and the breakfast allowance adjusts with it.',
+
+    elsewhere: {
+      eyebrow: 'Another hotel',
+      title: 'Before you let this one go',
+      text: 'We will not match a price we cannot see. What we can do is show you what this booking already holds.',
       points: [
-        '₹2,800 returns to your card',
-        'Room 214 and your transfer are kept',
-        'A guest can still be added later at the same rate'
+        'Candolim beach is a six-minute walk, not a drive',
+        'Both Mopa runs are paid for \u2014 charged \u20b92,400 each way on most rates',
+        'Breakfast, pool and Wi-Fi are inside the \u20b940,120',
+        'Free to cancel until 5 December, so there is no rush'
       ],
-      label: 'Re-price for one guest',
+      label: 'See what is included',
+      action: 'bill'
+    },
+
+    shorter: {
+      eyebrow: 'A shorter stay',
+      title: 'Drop the nights you do not need',
+      text: 'Shortening carries no fee before 5 December. You pay for the nights you keep, at the rate those nights carry.',
+      points: [
+        'Three nights instead of four returns \u20b910,030',
+        'Two nights returns \u20b920,060',
+        'Room 214 and both transfers stay with you',
+        'Subject to the shorter dates being open'
+      ],
+      label: 'Ask the desk to reprice',
       action: 'status',
-      status: 'Single-occupancy re-price requested — confirmation by email. (Sample page: nothing was changed.)'
+      status: 'Shorter stay requested \u2014 the desk confirms by email. (Sample page: nothing was changed.)'
     },
-    care: {
-      eyebrow: 'Travelling with your parents',
-      title: 'The desk can have this ready before you arrive',
-      text: 'Tell the Care Desk what would help \u2014 a slower pace at breakfast, plainer food, a shorter walk to the pool \u2014 and it is in place before you check in.',
+
+    tripoff: {
+      eyebrow: 'The trip is off',
+      title: 'Then here is exactly what comes back',
+      text: 'No pitch. If illness, family or a cancelled flight has ended the trip, the booking ends with it.',
       points: [
-        'A lift from the lobby to the door of Room 214, and no step into the room',
-        'The kitchen cooks plain, low-spice food on request, at no extra charge',
-        'Breakfast on the terrace, or brought up to the room instead'
+        '\u20b912,036 returns to the card ending 4412',
+        'The \u20b928,084 balance is never charged',
+        'Back in your account in 5 to 7 working days',
+        'Free until 5 December. After that, one night is held.'
       ],
-      label: 'Talk to the Care Desk',
-      action: 'desk'
+      label: 'See the refund in full',
+      action: 'refund'
     },
-    doctor: {
-      eyebrow: 'If a doctor is needed',
-      title: 'A doctor at any hour, a hospital six kilometres away',
-      text: 'The desk does not send you out looking for help. A doctor attends in the room, and a car stays on the property overnight so nobody is waiting for a taxi at three in the morning.',
-      points: [
-        'A doctor is on call 24 hours and attends in your room, not the lobby',
-        'The nearest hospital is 6 km \u2014 about fifteen minutes, and the desk calls ahead',
-        'Medicines, allergies and conditions are held at the desk, with your consent',
-        'A car and driver stay on the property through the night'
-      ],
-      label: 'Talk to the Care Desk',
-      action: 'desk'
-    },
-    fittings: {
-      eyebrow: 'Fittings for the bathroom',
-      title: 'Fitted before you arrive, at no charge',
-      text: 'Room 214 is fitted out before you land, so there is nothing to arrange at the desk and nothing added to your folio for it.',
-      points: [
-        'Grab bars beside the WC and inside the rain shower',
-        'A teak shower seat and a raised WC seat, fitted to the room',
-        'Non-slip mats in the bathroom and at the step out of the bathtub',
-        'Photographed once fitted and sent to you, so you see it before you fly'
-      ],
-      label: 'Request these fittings',
-      action: 'status',
-      status: 'Bathroom fittings requested for Room 214 \u2014 housekeeping confirms by email with a photograph. (Sample page: nothing was changed.)'
-    },
-    quiet: {
-      eyebrow: 'Worried about the noise',
-      title: 'Move to the Quiet Wing',
-      text: 'The Quiet Wing sits away from the pool bar and the beach music, so the evening sounds like the garden rather than the shoreline.',
-      points: [
-        'Soundproofed rooms, set back from the pool bar and the sand',
-        'Quiet hours from 10 PM across the whole wing',
-        'Same rate and the same inclusions — only the room number changes'
-      ],
-      label: 'Move me to the Quiet Wing',
-      action: 'status',
-      status: 'Quiet Wing move requested — the desk confirms by email. (Sample page: nothing was changed.)'
-    },
+
     other: null   // handled by its own step, with a box to write in
   };
+
 
   function showStep(step, remember) {
     [stepReason, stepSolution, stepOther, stepConfirm, stepDone].forEach(function (el) {
@@ -611,6 +598,12 @@
         return;
       }
 
+      // The trip-is-off answer stays inside the dialog and shows the figures
+      if (action === 'refund') {
+        showStep(stepConfirm);
+        return;
+      }
+
       closeModal();
 
       if (action === 'dates') openDrawer('drawerDates');
@@ -695,5 +688,35 @@
      ------------------------------------------------------------------ */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
+
+
+  /* ------------------------------------------------------------------
+     08. COUNTDOWN TO ARRIVAL
+     Counted from today to the 12 December check-in, so the closing band
+     never goes stale. Falls back to the number already in the markup.
+     ------------------------------------------------------------------ */
+  var countdownN = document.getElementById('countdownN');
+  if (countdownN) {
+    var arrival = new Date(2026, 11, 12);          // 12 December 2026
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var days = Math.round((arrival - today) / 86400000);
+    var label = document.querySelector('.countdown__l');
+    if (days > 1) {
+      countdownN.textContent = String(days);
+      if (label) label.textContent = 'days to go';
+    } else if (days === 1) {
+      countdownN.textContent = '1';
+      if (label) label.textContent = 'day to go';
+    } else if (days === 0) {
+      countdownN.textContent = 'Today';
+      countdownN.classList.add('countdown__n--word');
+      if (label) label.textContent = 'you arrive';
+    } else {
+      countdownN.textContent = 'Now';
+      countdownN.classList.add('countdown__n--word');
+      if (label) label.textContent = 'you are with us';
+    }
+  }
 
 })();
