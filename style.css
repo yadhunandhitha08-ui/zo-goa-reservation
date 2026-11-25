@@ -1437,24 +1437,6 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
 .rule--light::after { background: var(--clay-light); }
 
 /* --------------------------------------------------------------------
-   17.4  Section numerals
-   A numeral above each section title, set in the body face at caption
-   size so it reads as a mark rather than a heading.
-   -------------------------------------------------------------------- */
-main { counter-reset: zosec; }
-.section { counter-increment: zosec; }
-.section__head .section__title::before {
-  content: counter(zosec, upper-roman);
-  display: block;
-  margin-bottom: 0.7rem;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  color: var(--clay);
-}
-
-/* --------------------------------------------------------------------
    17.5  The closing band — centred countdown, one line, one quote
    -------------------------------------------------------------------- */
 .closing { text-align: center; }

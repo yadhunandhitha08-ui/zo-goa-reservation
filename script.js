@@ -432,21 +432,6 @@
       action: 'bill'
     },
 
-    shorter: {
-      eyebrow: 'A shorter stay',
-      title: 'Drop the nights you do not need',
-      text: 'Shortening carries no fee before 5 December. You pay for the nights you keep, at the rate those nights carry.',
-      points: [
-        'Three nights instead of four returns \u20b910,030',
-        'Two nights returns \u20b920,060',
-        'Room 214 and both transfers stay with you',
-        'Subject to the shorter dates being open'
-      ],
-      label: 'Ask the desk to reprice',
-      action: 'status',
-      status: 'Shorter stay requested \u2014 the desk confirms by email. (Sample page: nothing was changed.)'
-    },
-
     tripoff: {
       eyebrow: 'The trip is off',
       title: 'Then here is exactly what comes back',
