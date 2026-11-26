@@ -393,12 +393,6 @@
       eyebrow: 'Dates have moved',
       title: 'Move the stay instead',
       text: 'No fee to move before 5 December. Prices vary by date, so you see the new total before anything is confirmed.',
-      points: [
-        'Three windows are open now',
-        '9\u201313 January is \u20b92,360 less',
-        '19\u201323 December is \u20b92,360 more',
-        'Held 24 hours while you decide. Nothing is charged.'
-      ],
       label: 'See open dates',
       action: 'dates'
     },
@@ -557,11 +551,15 @@
       solutionText.textContent = answer.text;
 
       solutionPoints.innerHTML = '';
-      answer.points.forEach(function (point) {
+      var pts = answer.points || [];
+      pts.forEach(function (point) {
         var li = document.createElement('li');
         li.textContent = point;
         solutionPoints.appendChild(li);
       });
+      // an answer may carry no bullets at all, so the list hides itself
+      // rather than leaving its margin behind
+      solutionPoints.hidden = pts.length === 0;
 
       solutionPrimary.textContent = answer.label;
       solutionPrimary.dataset.action = answer.action;
