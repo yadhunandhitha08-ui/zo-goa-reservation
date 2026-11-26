@@ -681,7 +681,47 @@
      never goes stale. Falls back to the number already in the markup.
      ------------------------------------------------------------------ */
   /* ------------------------------------------------------------------
-     08. AMENITY PHOTOGRAPHS NOT YET SHOT
+     08. AMENITIES ACCORDION
+     One open at a time, so the section stays one screen tall however
+     much a guest reads. The panel markup carries aria-expanded and
+     aria-controls already; this only moves the state.
+     ------------------------------------------------------------------ */
+  var amenItems = document.querySelectorAll('.amen__item');
+  Array.prototype.forEach.call(amenItems, function (item) {
+    var trigger = item.querySelector('.amen__trigger');
+    if (!trigger) return;
+
+    /* A lazy image inside a closed panel only starts fetching when the
+       panel opens, which left it blank for about a second. Dropping the
+       lazy hint on hover or focus starts the fetch before the click;
+       the click itself covers touch and keyboard, where neither fires. */
+    function warm() {
+      var img = item.querySelector('.amen__panel img[loading="lazy"]');
+      if (img) img.removeAttribute('loading');
+    }
+    trigger.addEventListener('pointerenter', warm);
+    trigger.addEventListener('focus', warm);
+
+    trigger.addEventListener('click', function () {
+      warm();
+      var wasOpen = item.classList.contains('is-open');
+
+      Array.prototype.forEach.call(amenItems, function (other) {
+        other.classList.remove('is-open');
+        var t = other.querySelector('.amen__trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!wasOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+
+  /* ------------------------------------------------------------------
+     09. AMENITY PHOTOGRAPHS NOT YET SHOT
      The slot names itself instead of showing a broken-image icon, so
      the section reads correctly before the photography lands.
      ------------------------------------------------------------------ */

@@ -1497,48 +1497,89 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
 
 
 /* --------------------------------------------------------------------
-   17.6  Amenities — one list, each row carrying its own price label
-   Included and priced sat in separate sections before, which meant the
-   cost of a thing depended on where you happened to be reading. The
-   label now travels with the amenity.
+   17.6  Amenities — a collapsed list, each row carrying its price label
+   Thirteen open rows ran to several screens, so each is now a closed
+   row showing only its label and name. The label stays on the closed
+   row deliberately: included and priced can be scanned without opening
+   anything.
    -------------------------------------------------------------------- */
 :root { --priced: #8A5A2B; }   /* 5.1:1 on limewash */
 
 .amen {
-  display: grid;
-  gap: clamp(1.6rem, 3vw, 2.7rem);
-  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  border-top: 1px solid var(--line);
 }
-.amen__row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.15rem;
+.amen__item { border-bottom: 1px solid var(--line); }
+
+.amen__h { margin: 0; font: inherit; }
+
+.amen__trigger {
+  display: flex;
   align-items: center;
-  padding-bottom: clamp(1.6rem, 3vw, 2.7rem);
-  border-bottom: 1px solid var(--line);
+  gap: 0.85rem;
+  width: 100%;
+  padding: 1.1rem 0.3rem;
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease);
 }
-.amen__row:last-child { border-bottom: 0; padding-bottom: 0; }
+.amen__trigger:hover { background: rgba(21, 33, 58, 0.035); }
+.amen__trigger:focus-visible { outline: 2px solid var(--clay); outline-offset: -2px; }
 
-@media (min-width: 820px) {
-  .amen__row { grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4.5vw, 3.6rem); }
-  .amen__row:nth-child(even) .amen__media { order: -1; }
-}
-
-.amen__title {
-  margin-top: 0.6rem;
+.amen__name {
+  flex: 1;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
-  line-height: 1.2;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.25;
 }
+
+/* A plain CSS chevron rather than thirteen inline SVGs */
+.amen__chev {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 0.4rem;
+  border-right: 1.5px solid var(--clay);
+  border-bottom: 1.5px solid var(--clay);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease);
+}
+.amen__item.is-open .amen__chev { transform: rotate(-135deg); }
+
+/* The curtain. 0fr -> 1fr animates open without measuring the content,
+   and the inner element carries overflow so the padding collapses too.
+   visibility keeps a closed panel out of the tab order and the
+   accessibility tree, which height alone would not do. */
+.amen__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.36s var(--ease);
+}
+.amen__item.is-open .amen__panel { grid-template-rows: 1fr; }
+
+.amen__panel-in {
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 0s linear 0.36s;
+}
+.amen__item.is-open .amen__panel-in {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
 .amen__text {
-  margin-top: 0.6rem;
   max-width: 46ch;
+  padding-bottom: 1.4rem;
   line-height: 1.65;
   color: var(--ink-dim);
 }
 
 .amen__media {
-  margin: 0;
+  margin: 0 0 1.5rem;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--shell-deep);
@@ -1553,8 +1594,8 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
   object-fit: cover;
 }
 
-/* Until a photograph exists, the slot names itself rather than showing
-   a broken-image icon. script.js adds this class on load failure. */
+/* Until a photograph exists, the slot names itself rather than leaving
+   a hole. Adding an <img> and dropping is-missing is the whole change. */
 .amen__media.is-missing {
   display: grid;
   place-items: center;
@@ -1572,7 +1613,19 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
   color: var(--ink-quiet);
 }
 
+@media (min-width: 820px) {
+  .amen__panel-in {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(1.6rem, 3.2vw, 2.8rem);
+    align-items: center;
+  }
+  .amen__text { padding-bottom: 1.8rem; }
+  .amen__media { margin-bottom: 1.8rem; }
+}
+
 .tag {
+  flex: none;
   display: inline-block;
   padding: 0.3rem 0.65rem;
   border: 1px solid currentColor;
