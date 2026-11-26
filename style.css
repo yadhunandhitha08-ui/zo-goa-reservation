@@ -1497,145 +1497,164 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
 
 
 /* --------------------------------------------------------------------
-   17.6  Amenities — a collapsed list, each row carrying its price label
-   Thirteen open rows ran to several screens, so each is now a closed
-   row showing only its label and name. The label stays on the closed
-   row deliberately: included and priced can be scanned without opening
-   anything.
+   17.6  Amenities — a horizontal rail of cards
+   Thirteen stacked rows ran down the page; they now travel sideways.
+   The rail is a genuine scroll container with snap points rather than a
+   transformed track, so a trackpad, a thumb and the two buttons all
+   drive the same thing and no JavaScript is needed to drag it.
    -------------------------------------------------------------------- */
 :root { --priced: #8A5A2B; }   /* 5.1:1 on limewash */
 
-.amen {
-  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
-  border-top: 1px solid var(--line);
-}
-.amen__item { border-bottom: 1px solid var(--line); }
+.carousel { margin-top: clamp(1.8rem, 3.5vw, 2.6rem); }
 
-.amen__h { margin: 0; font: inherit; }
-
-.amen__trigger {
+.carousel__head {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  width: 100%;
-  padding: 1.1rem 0.3rem;
-  font: inherit;
-  color: var(--ink);
-  text-align: left;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  transition: background-color 0.2s var(--ease);
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
 }
-.amen__trigger:hover { background: rgba(21, 33, 58, 0.035); }
-.amen__trigger:focus-visible { outline: 2px solid var(--clay); outline-offset: -2px; }
-
-.amen__name {
-  flex: 1;
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
-  line-height: 1.25;
+.carousel__count {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
 }
+.carousel__nav { display: flex; gap: 0.5rem; }
 
-/* A plain CSS chevron rather than thirteen inline SVGs */
-.amen__chev {
-  flex: none;
-  width: 9px;
-  height: 9px;
-  margin-right: 0.4rem;
-  border-right: 1.5px solid var(--clay);
-  border-bottom: 1.5px solid var(--clay);
-  transform: rotate(45deg);
-  transition: transform 0.3s var(--ease);
-}
-.amen__item.is-open .amen__chev { transform: rotate(-135deg); }
-
-/* The curtain. 0fr -> 1fr animates open without measuring the content,
-   and the inner element carries overflow so the padding collapses too.
-   visibility keeps a closed panel out of the tab order and the
-   accessibility tree, which height alone would not do. */
-.amen__panel {
+.cbtn {
   display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.36s var(--ease);
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--card);
+  border: 1px solid var(--line-firm);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+              transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
-.amen__item.is-open .amen__panel { grid-template-rows: 1fr; }
+.cbtn:hover:not(:disabled) { background: var(--clay); border-color: var(--clay); transform: scale(1.06); }
+.cbtn:hover:not(:disabled) .cbtn__arrow { border-color: var(--on-night); }
+.cbtn:active:not(:disabled) { transform: scale(0.96); }
+.cbtn:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+.cbtn:disabled { opacity: 0.32; cursor: default; }
 
-.amen__panel-in {
-  overflow: hidden;
-  visibility: hidden;
-  transition: visibility 0s linear 0.36s;
+.cbtn__arrow {
+  width: 9px; height: 9px;
+  border-top: 1.5px solid var(--ink);
+  border-right: 1.5px solid var(--ink);
+  transition: border-color 0.2s var(--ease);
 }
-.amen__item.is-open .amen__panel-in {
-  visibility: visible;
-  transition-delay: 0s;
-}
+.cbtn__arrow--r { transform: translateX(-2px) rotate(45deg); }
+.cbtn__arrow--l { transform: translateX(2px) rotate(-135deg); }
 
-.amen__text {
-  max-width: 46ch;
-  padding-bottom: 1.4rem;
-  line-height: 1.65;
-  color: var(--ink-dim);
+/* The rail itself */
+.amrail {
+  display: flex;
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* proximity, not mandatory: a mandatory snap cannot rest at the true
+     end of the rail, so the last two cards were unreachable, and it
+     yanked every programmatic scrollBy back to the nearest snap point.
+     scroll-behavior stays out of CSS for the same reason — the buttons
+     ask for smooth themselves, so reduced-motion can still opt out. */
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0.4rem 0 1rem;
+  margin-top: -0.4rem;
 }
+.amrail::-webkit-scrollbar { display: none; }
+.amrail:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; border-radius: var(--radius); }
 
-.amen__media {
-  margin: 0 0 1.5rem;
+.amc {
+  flex: 0 0 auto;
+  width: clamp(236px, 74vw, 324px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--shell-deep);
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 26px -20px rgba(21, 33, 58, 0.5);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
+.amc:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 44px -26px rgba(21, 33, 58, 0.6);
+}
+
+.amc__media { position: relative; margin: 0; }
 /* height:auto or the width/height attributes win over aspect-ratio */
-.amen__media img {
+.amc__media img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.amc:hover .amc__media img { transform: scale(1.04); }
+
+/* The label rides on the photograph, so the card body is all copy */
+.amc__media .tag {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  background: var(--card);
+  border-color: transparent;
+  box-shadow: 0 4px 14px -6px rgba(21, 33, 58, 0.5);
 }
 
-/* Until a photograph exists, the slot names itself rather than leaving
-   a hole. Adding an <img> and dropping is-missing is the whole change. */
-.amen__media.is-missing {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 3 / 2;
-  background: linear-gradient(135deg, var(--shell-deep), var(--card-hover));
-  border: 1px dashed var(--line-firm);
-  box-shadow: none;
+.amc__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.05rem 1.1rem 1.25rem;
 }
-.amen__media.is-missing::after {
-  content: attr(data-label);
-  padding: 0 1.2rem;
-  text-align: center;
+.amc__title {
   font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--ink-quiet);
+  font-size: 1.14rem;
+  line-height: 1.25;
+}
+.amc__text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
 }
 
-@media (min-width: 820px) {
-  .amen__panel-in {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: clamp(1.6rem, 3.2vw, 2.8rem);
-    align-items: center;
-  }
-  .amen__text { padding-bottom: 1.8rem; }
-  .amen__media { margin-bottom: 1.8rem; }
+/* Progress, tracking the scroll rather than a card index, so a drag
+   moves it as truthfully as a button press does */
+.carousel__rail {
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.carousel__bar {
+  display: block;
+  height: 100%;
+  width: 23%;
+  background: var(--clay);
+  border-radius: 2px;
+  transition: width 0.3s var(--ease), transform 0.3s var(--ease);
 }
 
 .tag {
   flex: none;
+  align-self: flex-start;
   display: inline-block;
-  /* One width for both labels, or 'Priced' is 16px narrower than
-     'Included' and the titles sit on two different left edges. */
-  min-width: 5.6rem;
-  text-align: center;
   padding: 0.3rem 0.65rem;
   border: 1px solid currentColor;
   border-radius: 999px;
   font-family: var(--font-body);
-  font-size: 0.67rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;

@@ -676,67 +676,90 @@
 
 
   /* ------------------------------------------------------------------
-     08. COUNTDOWN TO ARRIVAL
+     08. AMENITIES RAIL
+     Thirteen cards travelling sideways. The rail is a real scroll
+     container with snap points, so a trackpad, a thumb and the two
+     buttons all move the same thing — the buttons only call scrollBy,
+     and everything else reads back out of scrollLeft. That keeps the
+     counter and the progress bar honest whichever way it was moved.
+     ------------------------------------------------------------------ */
+  var rail = document.getElementById('amRail');
+  if (rail) {
+    var railPrev  = document.getElementById('amPrev');
+    var railNext  = document.getElementById('amNext');
+    var railCount = document.getElementById('amCount');
+    var railBar   = document.getElementById('amBar');
+    var cards     = rail.querySelectorAll('.amc');
+    var total     = cards.length;
+
+    function step() {
+      if (!cards.length) return rail.clientWidth;
+      var a = cards[0].getBoundingClientRect();
+      if (cards.length > 1) {
+        // card width plus whatever gap the stylesheet is using at this width
+        return Math.round(cards[1].getBoundingClientRect().left - a.left);
+      }
+      return Math.round(a.width);
+    }
+
+    function sync() {
+      var max = rail.scrollWidth - rail.clientWidth;
+      var x = rail.scrollLeft;
+
+      if (railPrev) railPrev.disabled = x <= 2;
+      if (railNext) railNext.disabled = x >= max - 2;
+
+      var per = Math.max(1, Math.round(rail.clientWidth / step()));
+      // round, not floor: at the far end the rail stops short of a whole
+      // card width, and flooring there reported the previous card as first
+      var first = Math.min(total - per + 1, Math.round(x / step()) + 1);
+      if (first < 1) first = 1;
+      var last = Math.min(total, first + per - 1);
+
+      if (railCount) {
+        if (per >= total)      railCount.textContent = String(total) + ' amenities';
+        else if (per === 1)    railCount.textContent = first + ' of ' + total;
+        else                   railCount.textContent = first + ' \u2013 ' + last + ' of ' + total;
+      }
+
+      if (railBar) {
+        var frac = Math.min(1, rail.clientWidth / rail.scrollWidth);
+        railBar.style.width = (frac * 100) + '%';
+        var travel = max > 0 ? (x / max) : 0;
+        railBar.style.transform =
+          'translateX(' + (travel * ((1 / frac) - 1) * 100) + '%)';
+      }
+    }
+
+    function nudge(dir) {
+      rail.scrollBy({ left: dir * step(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    }
+
+    if (railPrev) railPrev.addEventListener('click', function () { nudge(-1); });
+    if (railNext) railNext.addEventListener('click', function () { nudge(1); });
+
+    rail.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); nudge(1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); nudge(-1); }
+    });
+
+    var queued = false;
+    rail.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(function () { queued = false; sync(); });
+    });
+
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
+
+  /* ------------------------------------------------------------------
+     09. COUNTDOWN TO ARRIVAL
      Counted from today to the 12 December check-in, so the closing band
      never goes stale. Falls back to the number already in the markup.
      ------------------------------------------------------------------ */
-  /* ------------------------------------------------------------------
-     08. AMENITIES ACCORDION
-     One open at a time, so the section stays one screen tall however
-     much a guest reads. The panel markup carries aria-expanded and
-     aria-controls already; this only moves the state.
-     ------------------------------------------------------------------ */
-  var amenItems = document.querySelectorAll('.amen__item');
-  Array.prototype.forEach.call(amenItems, function (item) {
-    var trigger = item.querySelector('.amen__trigger');
-    if (!trigger) return;
-
-    /* A lazy image inside a closed panel only starts fetching when the
-       panel opens, which left it blank for about a second. Dropping the
-       lazy hint on hover or focus starts the fetch before the click;
-       the click itself covers touch and keyboard, where neither fires. */
-    function warm() {
-      var img = item.querySelector('.amen__panel img[loading="lazy"]');
-      if (img) img.removeAttribute('loading');
-    }
-    trigger.addEventListener('pointerenter', warm);
-    trigger.addEventListener('focus', warm);
-
-    trigger.addEventListener('click', function () {
-      warm();
-      var wasOpen = item.classList.contains('is-open');
-
-      Array.prototype.forEach.call(amenItems, function (other) {
-        other.classList.remove('is-open');
-        var t = other.querySelector('.amen__trigger');
-        if (t) t.setAttribute('aria-expanded', 'false');
-      });
-
-      if (!wasOpen) {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-
-
-  /* ------------------------------------------------------------------
-     09. AMENITY PHOTOGRAPHS NOT YET SHOT
-     The slot names itself instead of showing a broken-image icon, so
-     the section reads correctly before the photography lands.
-     ------------------------------------------------------------------ */
-  var amenImgs = document.querySelectorAll('.amen__media img');
-  Array.prototype.forEach.call(amenImgs, function (img) {
-    function mark() {
-      var fig = img.parentNode;
-      if (fig && fig.classList) fig.classList.add('is-missing');
-      if (img.parentNode) img.parentNode.removeChild(img);
-    }
-    if (img.complete && img.naturalWidth === 0) mark();
-    else img.addEventListener('error', mark);
-  });
-
-
   var countdownN = document.getElementById('countdownN');
   if (countdownN) {
     var arrival = new Date(2026, 11, 12);          // 12 December 2026

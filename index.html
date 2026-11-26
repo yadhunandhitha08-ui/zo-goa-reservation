@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body id="top">
 
@@ -245,251 +245,169 @@
     </section>
 
     <!-- ============================================================
-         4. AMENITIES — one list, each row carrying its own price label
-         Collapsed by default: thirteen open rows ran to several screens,
-         so each one now shows its label and name until it is opened.
+         4. AMENITIES — a horizontal rail of cards
+         Thirteen stacked rows ran down the page, so they now travel
+         sideways: three cards at a time, moved a card at a time. The
+         rail is a real scroll container, which means a trackpad or a
+         thumb can move it as well as the two buttons.
          ============================================================ -->
     <section class="section" id="included" aria-labelledby="amenTitle">
       <div class="shell">
         <header class="section__head section__head--center">
           <p class="eyebrow eyebrow--clay">Amenities</p>
           <h2 class="section__title" id="amenTitle">Everything here, and what it costs</h2>
-          <p class="section__sub">Green is already inside your &#8377;40,120. Amber is charged only if you want it. Open any one to see it.</p>
+          <p class="section__sub">Green is already inside your &#8377;40,120. Amber is charged only if you want it.</p>
           <span class="rule" aria-hidden="true"></span>
         </header>
 
-        <ul class="amen">
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT1"
-                      aria-expanded="false" aria-controls="amP1">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Breakfast on the terrace</span>
-                <span class="amen__chev" aria-hidden="true"></span>
+        <div class="carousel reveal">
+          <div class="carousel__head">
+            <p class="carousel__count" id="amCount" aria-live="polite">1 &ndash; 3 of 13</p>
+            <div class="carousel__nav">
+              <button class="cbtn" type="button" id="amPrev" aria-label="Previous amenities" aria-controls="amRail">
+                <span class="cbtn__arrow cbtn__arrow--l" aria-hidden="true"></span>
               </button>
-            </h3>
-            <div class="amen__panel" id="amP1" role="region" aria-labelledby="amT1">
-              <div class="amen__panel-in">
-                <p class="amen__text">Poi still warm from the bakery, eggs cooked while you wait and fruit cut that morning. Served 7:30 to 10:30 on the terrace, or brought up to the room if you would rather not dress.</p>
-                <figure class="amen__media">
-                  <img src="images/am-breakfast.jpg" alt="Breakfast on the terrace: a basket of warm poi, eggs, sliced papaya and filter coffee, with the sea beyond." loading="lazy" width="1400" height="933">
-                </figure>
-              </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT2"
-                      aria-expanded="false" aria-controls="amP2">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Both Mopa airport runs</span>
-                <span class="amen__chev" aria-hidden="true"></span>
+              <button class="cbtn" type="button" id="amNext" aria-label="Next amenities" aria-controls="amRail">
+                <span class="cbtn__arrow cbtn__arrow--r" aria-hidden="true"></span>
               </button>
-            </h3>
-            <div class="amen__panel" id="amP2" role="region" aria-labelledby="amT2">
-              <div class="amen__panel-in">
-                <p class="amen__text">A car each way, booked against your flight number. The driver watches the landing time and waits inside with your name, however late it slips. Forty minutes to Candolim.</p>
-                <figure class="amen__media">
-                  <img src="images/am-transfer.jpg" alt="A hotel driver in uniform waiting with a name card beside an open car door outside the airport terminal at dusk." loading="lazy" width="1400" height="933">
-                </figure>
-              </div>
             </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT3"
-                      aria-expanded="false" aria-controls="amP3">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Infinity pool, steam room and gym</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP3" role="region" aria-labelledby="amT3">
-              <div class="amen__panel-in">
-                <p class="amen__text">Open from six in the morning until nine at night, with towels laid out at the door. The pool looks over the palms to the sea, and it is rarely busy before nine.</p>
-                <figure class="amen__media">
-                  <img src="images/am-pool.jpg" alt="The infinity pool at sunset, folded towels on a teak lounger, palms and the sea beyond." loading="lazy" width="1400" height="933">
-                </figure>
+          </div>
+
+          <ul class="amrail" id="amRail" role="list" tabindex="0" aria-label="Amenities, scrollable">
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-breakfast.jpg" alt="Breakfast on the terrace: a basket of warm poi, eggs, sliced papaya and filter coffee, with the sea beyond." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Breakfast on the terrace</h3>
+                <p class="amc__text">Poi still warm from the bakery, eggs cooked while you wait and fruit cut that morning. Served 7:30 to 10:30 on the terrace, or brought up to the room.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT4"
-                      aria-expanded="false" aria-controls="amP4">
-                <span class="tag tag--pay">Priced</span>
-                <span class="amen__name">The spa</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP4" role="region" aria-labelledby="amT4">
-              <div class="amen__panel-in">
-                <p class="amen__text">Four treatment rooms above the garden. Oil massage from &#8377;2,100, an hour for two at &#8377;4,200. The steam room stays inside your rate; only the treatments are charged.</p>
-                <figure class="amen__media">
-                  <img src="images/am-spa.jpg" alt="A spa treatment room with two beds in white linen, brass bowls and candles, open to the garden." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-transfer.jpg" alt="A hotel driver in uniform waiting with a name card beside an open car door outside the airport terminal at dusk." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Both Mopa airport runs</h3>
+                <p class="amc__text">A car each way, booked against your flight number. The driver watches the landing time and waits inside with your name, however late it slips.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT5"
-                      aria-expanded="false" aria-controls="amP5">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">A table on the sand at sunset</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP5" role="region" aria-labelledby="amT5">
-              <div class="amen__panel-in">
-                <p class="amen__text">A table carried down to the beach and set for the hour you choose. No charge to reserve it. Ask the desk a day ahead, as there are only six.</p>
-                <figure class="amen__media">
-                  <img src="images/am-sunset-table.jpg" alt="A table set on the sand at sunset, two cane chairs and a lantern, the sea behind." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-pool.jpg" alt="The infinity pool at sunset, folded towels on a teak lounger, palms and the sea beyond." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Infinity pool, steam and gym</h3>
+                <p class="amc__text">Open from six in the morning until nine at night, towels laid out at the door. The pool looks over the palms to the sea, and is rarely busy before nine.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT6"
-                      aria-expanded="false" aria-controls="amP6">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">The Care Desk</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP6" role="region" aria-labelledby="amT6">
-              <div class="amen__panel-in">
-                <p class="amen__text">One number for everything: a table, a taxi, a doctor, a late arrival. Someone picks up at three in the morning, and a doctor attends in your room rather than the lobby. The hospital is 6 km away.</p>
-                <figure class="amen__media">
-                  <img src="images/am-care-desk.jpg" alt="The Care Desk at night: a brass lamp, a telephone and an open ledger on the marble counter." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-spa.jpg" alt="A spa treatment room with two beds in white linen, brass bowls and candles, open to the garden." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--pay">Priced</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">The spa</h3>
+                <p class="amc__text">Four treatment rooms above the garden. Oil massage from &#8377;2,100, an hour for two at &#8377;4,200. The steam room stays inside your rate.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT7"
-                      aria-expanded="false" aria-controls="amP7">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Step-free access</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP7" role="region" aria-labelledby="amT7">
-              <div class="amen__panel-in">
-                <p class="amen__text">A lift to every floor and no step into Room 214 or its shower. Grab bars and a fold-down shower seat are fitted at no charge. Ask before you fly and they are in place when you arrive.</p>
-                <figure class="amen__media">
-                  <img src="images/am-access.jpg" alt="A marble bathroom with a level-entry shower, a grab bar, a fold-down seat and a handheld shower on a rail." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-sunset-table.jpg" alt="A table set on the sand at sunset, two cane chairs and a lantern, the sea behind." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">A table on the sand at sunset</h3>
+                <p class="amc__text">A table carried down to the beach and set for the hour you choose. No charge to reserve it. Ask the desk a day ahead, as there are only six.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT8"
-                      aria-expanded="false" aria-controls="amP8">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Travelling with children</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP8" role="region" aria-labelledby="amT8">
-              <div class="amen__panel-in">
-                <p class="amen__text">A cot and a high chair at no charge, and the kitchen will cook plain food off the menu. An extra bed for an older child is &#8377;1,800 a night.</p>
-                <figure class="amen__media">
-                  <img src="images/am-children.jpg" alt="A wooden cot and a high chair set up beside the bed, with the balcony doors open to the garden." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-care-desk.jpg" alt="The Care Desk at night: a brass lamp, a telephone and an open ledger on the marble counter." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">The Care Desk</h3>
+                <p class="amc__text">One number for a table, a taxi, a doctor or a late arrival. Someone picks up at three in the morning, and a doctor attends in your room.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT9"
-                      aria-expanded="false" aria-controls="amP9">
-                <span class="tag tag--pay">Priced</span>
-                <span class="amen__name">Dogs</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP9" role="region" aria-labelledby="amT9">
-              <div class="amen__panel-in">
-                <p class="amen__text">Up to 15 kg, in Garden rooms only, at &#8377;600 a night. A bed and bowls are in the room before you arrive. Not in Ocean-View rooms, so this would mean moving yours.</p>
-                <figure class="amen__media">
-                  <img src="images/am-dogs.jpg" alt="A dog bed and two ceramic bowls on the floor beside garden doors opening onto a courtyard." loading="lazy" width="1400" height="933">
-                </figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-access.jpg" alt="A marble bathroom with a level-entry shower, a grab bar, a fold-down seat and a handheld shower on a rail." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Step-free access</h3>
+                <p class="amc__text">A lift to every floor and no step into Room 214 or its shower. Grab bars and a fold-down shower seat are fitted at no charge, if you ask before you fly.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT10"
-                      aria-expanded="false" aria-controls="amP10">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">The kitchen</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP10" role="region" aria-labelledby="amT10">
-              <div class="amen__panel-in">
-                <p class="amen__text">Jain, vegan, gluten-free and low-spice are cooked to order rather than adapted. Tell the kitchen a day ahead and the chef comes out to confirm it with you.</p>
-                <figure class="amen__media is-missing" data-label="The kitchen" data-src="images/am-kitchen.jpg"
-                        role="img" aria-label="Photograph of the kitchen to follow"></figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-children.jpg" alt="A wooden cot and a high chair set up beside the bed, with the balcony doors open to the garden." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Travelling with children</h3>
+                <p class="amc__text">A cot and a high chair at no charge, and the kitchen will cook plain food off the menu. An extra bed for an older child is &#8377;1,800 a night.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT11"
-                      aria-expanded="false" aria-controls="amP11">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Parking and valet</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP11" role="region" aria-labelledby="amT11">
-              <div class="amen__panel-in">
-                <p class="amen__text">Free on the property, with valet at the door. Covered, and the gate is manned through the night.</p>
-                <figure class="amen__media is-missing" data-label="Parking and valet" data-src="images/am-parking.jpg"
-                        role="img" aria-label="Photograph of parking and valet to follow"></figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-dogs.jpg" alt="A dog bed and two ceramic bowls on the floor beside garden doors opening onto a courtyard." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--pay">Priced</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Dogs</h3>
+                <p class="amc__text">Up to 15 kg, in Garden rooms only, at &#8377;600 a night. A bed and bowls are in the room before you arrive. Not in Ocean-View rooms.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT12"
-                      aria-expanded="false" aria-controls="amP12">
-                <span class="tag tag--pay">Priced</span>
-                <span class="amen__name">Laundry and room service</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP12" role="region" aria-labelledby="amT12">
-              <div class="amen__panel-in">
-                <p class="amen__text">Laundry comes back the same day if it is in by nine, priced per piece. Room service runs through the night at menu price.</p>
-                <figure class="amen__media is-missing" data-label="Laundry and room service" data-src="images/am-laundry.jpg"
-                        role="img" aria-label="Photograph of laundry and room service to follow"></figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-kitchen.jpg" alt="A chef plating a vegetarian Goan dish on a stainless pass, copper pans hanging behind." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">The kitchen</h3>
+                <p class="amc__text">Jain, vegan, gluten-free and low-spice are cooked to order rather than adapted. Tell the kitchen a day ahead and the chef confirms it with you.</p>
               </div>
-            </div>
-          </li>
-          <li class="amen__item">
-            <h3 class="amen__h">
-              <button class="amen__trigger" type="button" id="amT13"
-                      aria-expanded="false" aria-controls="amP13">
-                <span class="tag tag--inc">Included</span>
-                <span class="amen__name">Shuttle to Candolim beach</span>
-                <span class="amen__chev" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="amen__panel" id="amP13" role="region" aria-labelledby="amT13">
-              <div class="amen__panel-in">
-                <p class="amen__text">Every thirty minutes from seven in the morning until eleven at night, to the beach road and back. The walk is six minutes if you would rather.</p>
-                <figure class="amen__media is-missing" data-label="Shuttle to Candolim beach" data-src="images/am-shuttle.jpg"
-                        role="img" aria-label="Photograph of shuttle to candolim beach to follow"></figure>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-parking.jpg" alt="The covered parking portico at dusk, lit stone columns, a car under the canopy and the valet key board." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Parking and valet</h3>
+                <p class="amc__text">Free on the property, with valet at the door. Covered, and the gate is manned through the night.</p>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-laundry.jpg" alt="A pressed shirt and folded linen in a wardrobe, with a covered room-service tray on the table." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--pay">Priced</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Laundry and room service</h3>
+                <p class="amc__text">Laundry comes back the same day if it is in by nine, priced per piece. Room service runs through the night at menu price.</p>
+              </div>
+            </li>
+            <li class="amc" role="listitem">
+              <figure class="amc__media">
+                <img src="images/am-shuttle.jpg" alt="A cream resort shuttle buggy waiting on a palm-lined lane, bougainvillea over a white wall." loading="lazy" width="1400" height="933">
+                <figcaption class="tag tag--inc">Included</figcaption>
+              </figure>
+              <div class="amc__body">
+                <h3 class="amc__title">Shuttle to Candolim beach</h3>
+                <p class="amc__text">Every thirty minutes from seven in the morning until eleven at night, to the beach road and back. The walk is six minutes if you would rather.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="carousel__rail" aria-hidden="true"><span class="carousel__bar" id="amBar"></span></div>
+        </div>
       </div>
     </section>
 
@@ -822,6 +740,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=21"></script>
 </body>
 </html>
