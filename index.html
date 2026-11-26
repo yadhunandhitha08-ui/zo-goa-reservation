@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body id="top">
 
@@ -140,7 +140,7 @@
                   <dd class="num">&#8377;34,000</dd>
                 </div>
                 <div class="bill__row"><dt>Breakfast</dt><dd class="bill__free">Included</dd></div>
-                <div class="bill__row"><dt>Pool, steam room and gym</dt><dd class="bill__free">Included</dd></div>
+                <div class="bill__row"><dt>Pool and gym</dt><dd class="bill__free">Included</dd></div>
                 <div class="bill__row"><dt>Wi-Fi</dt><dd class="bill__free">Included</dd></div>
                 <div class="bill__row"><dt>Tea, coffee and water, refilled daily</dt><dd class="bill__free">Included</dd></div>
                 <div class="bill__row"><dt>Mopa airport pickup and drop</dt><dd class="bill__free">Included</dd></div>
@@ -246,23 +246,21 @@
 
     <!-- ============================================================
          4. AMENITIES — a horizontal rail of cards
-         Thirteen stacked rows ran down the page, so they now travel
-         sideways: three cards at a time, moved a card at a time. The
-         rail is a real scroll container, which means a trackpad or a
-         thumb can move it as well as the two buttons.
+         Twelve cards travelling sideways, three at a time. Each carries
+         its own price label, so what a thing costs never depends on
+         where in the page it happens to sit.
          ============================================================ -->
     <section class="section" id="included" aria-labelledby="amenTitle">
       <div class="shell">
         <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--clay">Amenities</p>
-          <h2 class="section__title" id="amenTitle">Everything here, and what it costs</h2>
-          <p class="section__sub">Green is already inside your &#8377;40,120. Amber is charged only if you want it.</p>
+          <p class="eyebrow eyebrow--clay">ZO Goa, Candolim</p>
+          <h2 class="section__title" id="amenTitle">Amenities</h2>
           <span class="rule" aria-hidden="true"></span>
         </header>
 
         <div class="carousel reveal">
           <div class="carousel__head">
-            <p class="carousel__count" id="amCount" aria-live="polite">1 &ndash; 3 of 13</p>
+            <p class="carousel__count" id="amCount" aria-live="polite">1 &ndash; 3 of 12</p>
             <div class="carousel__nav">
               <button class="cbtn" type="button" id="amPrev" aria-label="Previous amenities" aria-controls="amRail">
                 <span class="cbtn__arrow cbtn__arrow--l" aria-hidden="true"></span>
@@ -281,7 +279,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">Breakfast on the terrace</h3>
-                <p class="amc__text">Poi still warm from the bakery, eggs cooked while you wait and fruit cut that morning. Served 7:30 to 10:30 on the terrace, or brought up to the room.</p>
+                <p class="amc__text">Terrace breakfast, 7:30 to 10:30. Or brought to your room.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -291,7 +289,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">Both Mopa airport runs</h3>
-                <p class="amc__text">A car each way, booked against your flight number. The driver watches the landing time and waits inside with your name, however late it slips.</p>
+                <p class="amc__text">A car on arrival, and again when you leave.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -300,8 +298,8 @@
                 <figcaption class="tag tag--inc">Included</figcaption>
               </figure>
               <div class="amc__body">
-                <h3 class="amc__title">Infinity pool, steam and gym</h3>
-                <p class="amc__text">Open from six in the morning until nine at night, towels laid out at the door. The pool looks over the palms to the sea, and is rarely busy before nine.</p>
+                <h3 class="amc__title">Infinity pool and gym</h3>
+                <p class="amc__text">Open 6am to 9pm, towels at the door.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -311,7 +309,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">The spa</h3>
-                <p class="amc__text">Four treatment rooms above the garden. Oil massage from &#8377;2,100, an hour for two at &#8377;4,200. The steam room stays inside your rate.</p>
+                <p class="amc__text">Massage and treatments, from &#8377;2,100.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -321,7 +319,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">A table on the sand at sunset</h3>
-                <p class="amc__text">A table carried down to the beach and set for the hour you choose. No charge to reserve it. Ask the desk a day ahead, as there are only six.</p>
+                <p class="amc__text">Set for you at the hour you choose. Six tables, booked at the desk.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -331,17 +329,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">The Care Desk</h3>
-                <p class="amc__text">One number for a table, a taxi, a doctor or a late arrival. Someone picks up at three in the morning, and a doctor attends in your room.</p>
-              </div>
-            </li>
-            <li class="amc" role="listitem">
-              <figure class="amc__media">
-                <img src="images/am-access.jpg" alt="A marble bathroom with a level-entry shower, a grab bar, a fold-down seat and a handheld shower on a rail." loading="lazy" width="1400" height="933">
-                <figcaption class="tag tag--inc">Included</figcaption>
-              </figure>
-              <div class="amc__body">
-                <h3 class="amc__title">Step-free access</h3>
-                <p class="amc__text">A lift to every floor and no step into Room 214 or its shower. Grab bars and a fold-down shower seat are fitted at no charge, if you ask before you fly.</p>
+                <p class="amc__text">Answered 24/7, with a doctor on call.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -351,7 +339,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">Travelling with children</h3>
-                <p class="amc__text">A cot and a high chair at no charge, and the kitchen will cook plain food off the menu. An extra bed for an older child is &#8377;1,800 a night.</p>
+                <p class="amc__text">Cot and high chair free. Extra bed &#8377;1,800 a night.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -361,7 +349,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">Dogs</h3>
-                <p class="amc__text">Up to 15 kg, in Garden rooms only, at &#8377;600 a night. A bed and bowls are in the room before you arrive. Not in Ocean-View rooms.</p>
+                <p class="amc__text">&#8377;600 a night, with a bed and bowls in the room.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -371,7 +359,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">The kitchen</h3>
-                <p class="amc__text">Jain, vegan, gluten-free and low-spice are cooked to order rather than adapted. Tell the kitchen a day ahead and the chef confirms it with you.</p>
+                <p class="amc__text">Jain, vegan and gluten-free, just tell the kitchen.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -380,8 +368,8 @@
                 <figcaption class="tag tag--inc">Included</figcaption>
               </figure>
               <div class="amc__body">
-                <h3 class="amc__title">Parking and valet</h3>
-                <p class="amc__text">Free on the property, with valet at the door. Covered, and the gate is manned through the night.</p>
+                <h3 class="amc__title">Parking</h3>
+                <p class="amc__text">On the property, with a car wash on request.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -390,8 +378,8 @@
                 <figcaption class="tag tag--pay">Priced</figcaption>
               </figure>
               <div class="amc__body">
-                <h3 class="amc__title">Laundry and room service</h3>
-                <p class="amc__text">Laundry comes back the same day if it is in by nine, priced per piece. Room service runs through the night at menu price.</p>
+                <h3 class="amc__title">Laundry</h3>
+                <p class="amc__text">Back the same day, priced per piece.</p>
               </div>
             </li>
             <li class="amc" role="listitem">
@@ -401,7 +389,7 @@
               </figure>
               <div class="amc__body">
                 <h3 class="amc__title">Shuttle to Candolim beach</h3>
-                <p class="amc__text">Every thirty minutes from seven in the morning until eleven at night, to the beach road and back. The walk is six minutes if you would rather.</p>
+                <p class="amc__text">Every thirty minutes to the beach road, 7am to 11pm.</p>
               </div>
             </li>
           </ul>
@@ -740,6 +728,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=22"></script>
+  <script src="script.js?v=23"></script>
 </body>
 </html>
