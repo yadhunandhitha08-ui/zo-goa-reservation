@@ -379,12 +379,11 @@
     price: {
       eyebrow: 'A better price elsewhere',
       title: 'What your rate is made of',
-      text: 'Other sites quote the room alone and add tax at the end, so two numbers rarely cover the same stay. Yours is set out line by line.',
+      text: 'Call the Goa desk and they will take you through the price, line by line.',
       points: [
         '\u20b934,000 is the room \u2014 \u20b98,500 a night, four nights',
         'Breakfast, both Mopa runs, the pool and Wi-Fi sit inside that',
-        'GST at 18% is \u20b96,120, set by law',
-        'A cheaper rate elsewhere may drop the transfer, or may not be refundable'
+        'GST at 18% is \u20b96,120, set by law'
       ],
       label: 'See the full breakdown',
       action: 'bill'
