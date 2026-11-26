@@ -680,6 +680,23 @@
      Counted from today to the 12 December check-in, so the closing band
      never goes stale. Falls back to the number already in the markup.
      ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------
+     08. AMENITY PHOTOGRAPHS NOT YET SHOT
+     The slot names itself instead of showing a broken-image icon, so
+     the section reads correctly before the photography lands.
+     ------------------------------------------------------------------ */
+  var amenImgs = document.querySelectorAll('.amen__media img');
+  Array.prototype.forEach.call(amenImgs, function (img) {
+    function mark() {
+      var fig = img.parentNode;
+      if (fig && fig.classList) fig.classList.add('is-missing');
+      if (img.parentNode) img.parentNode.removeChild(img);
+    }
+    if (img.complete && img.naturalWidth === 0) mark();
+    else img.addEventListener('error', mark);
+  });
+
+
   var countdownN = document.getElementById('countdownN');
   if (countdownN) {
     var arrival = new Date(2026, 11, 12);          // 12 December 2026

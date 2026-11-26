@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body id="top">
 
@@ -36,7 +36,6 @@
           <li><a href="#stay">Your stay</a></li>
           <li><a href="#room">Your room</a></li>
           <li><a href="#included">Amenities</a></li>
-          <li><a href="#request">On request</a></li>
           <li><a href="#around">Around you</a></li>
         </ul>
         <a class="btn btn--solid btn--sm" href="#manage">View reservation</a>
@@ -246,130 +245,123 @@
     </section>
 
     <!-- ============================================================
-         4. INCLUDED — what the total already covers
+         4. AMENITIES — one list, each marked included or priced
+         Every amenity carries its own label, so nothing has to be
+         inferred from which section it happens to sit in.
          ============================================================ -->
-    <section class="section" id="included" aria-labelledby="includedTitle">
+    <section class="section" id="included" aria-labelledby="amenTitle">
       <div class="shell">
         <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--clay">Included amenities</p>
-          <h2 class="section__title" id="includedTitle">The amenities already inside your rate</h2>
-          <p class="section__sub">Six things your rate covers, and the hours they keep.</p>
+          <p class="eyebrow eyebrow--clay">Amenities</p>
+          <h2 class="section__title" id="amenTitle">Everything here, and what it costs</h2>
+          <p class="section__sub">Green is already inside your &#8377;40,120. Amber is charged only if you want it.</p>
           <span class="rule" aria-hidden="true"></span>
         </header>
 
-        <ul class="amenities">
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <path d="M6 12h17v7a6 6 0 0 1-6 6h-5a6 6 0 0 1-6-6v-7Z" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M23 14h2.5a3.5 3.5 0 0 1 0 7H23" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M11 4.5c-1 1.5-1 2.5 0 4M16 4.5c-1 1.5-1 2.5 0 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-            <h3>Goan breakfast on the terrace</h3>
-            <p>Warm poi, eggs cooked to order and chilled papaya on the terrace, 7:30 to 10:30.</p>
+        <ul class="amen">
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Breakfast on the terrace</h3>
+              <p class="amen__text">Poi still warm from the bakery, eggs cooked while you wait and fruit cut that morning. Served 7:30 to 10:30 on the terrace, or brought up to the room if you would rather not dress.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Breakfast on the terrace" data-src="images/am-breakfast.jpg" role="img" aria-label="Photograph of breakfast on the terrace to follow"></figure>
           </li>
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <path d="M4 20.5h24M6.5 20.5 9 12.5A3 3 0 0 1 11.9 10h8.2a3 3 0 0 1 2.9 2.5l2.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="10" cy="24" r="2.2" stroke="currentColor" stroke-width="1.3"/>
-              <circle cx="22" cy="24" r="2.2" stroke="currentColor" stroke-width="1.3"/>
-            </svg>
-            <h3>Both Mopa airport runs</h3>
-            <p>Your driver tracks the flight and waits with your name. Forty minutes to Candolim.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Both Mopa airport runs</h3>
+              <p class="amen__text">A car each way, booked against your flight number. The driver watches the landing time and waits inside with your name, however late it slips. Forty minutes to Candolim.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Both Mopa airport runs" data-src="images/am-transfer.jpg" role="img" aria-label="Photograph of both mopa airport runs to follow"></figure>
           </li>
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <path d="M3 22c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <path d="M3 16c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <path d="M11 12V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-            <h3>Infinity pool, steam and spa</h3>
-            <p>Yours from six in the morning until nine at night. Spa access is inside the rate; treatments are charged separately.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Infinity pool, steam room and gym</h3>
+              <p class="amen__text">Open from six in the morning until nine at night, with towels laid out at the door. The pool looks over the palms to the sea, and it is rarely busy before nine.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Infinity pool, steam room and gym" data-src="images/am-pool.jpg" role="img" aria-label="Photograph of infinity pool, steam room and gym to follow"></figure>
           </li>
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <circle cx="16" cy="13" r="5.5" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M16 3.5v2M16 20.5v2M5.5 13h2M24.5 13h2M8.6 5.6l1.4 1.4M22 19l1.4 1.4M23.4 5.6 22 7M10 19l-1.4 1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <path d="M3 26h26M6 29.5h20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-            <h3>A sunset table on the sand</h3>
-            <p>No charge. Ask the desk a day ahead.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--pay">Priced</p>
+              <h3 class="amen__title">The spa</h3>
+              <p class="amen__text">Four treatment rooms above the garden. Oil massage from &#8377;2,100, an hour for two at &#8377;4,200. The steam room stays inside your rate; only the treatments are charged.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="The spa" data-src="images/am-spa.jpg" role="img" aria-label="Photograph of the spa to follow"></figure>
           </li>
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <path d="M6 19v-3a10 10 0 0 1 20 0v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <rect x="3.5" y="18" width="5.5" height="8" rx="2.75" stroke="currentColor" stroke-width="1.3"/>
-              <rect x="23" y="18" width="5.5" height="8" rx="2.75" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M26 26v1a3 3 0 0 1-3 3h-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-            <h3>The Care Desk, day and night</h3>
-            <p>One number for tables, taxis, a doctor or a late arrival. Someone answers at three in the morning.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">A table on the sand at sunset</h3>
+              <p class="amen__text">A table carried down to the beach and set for the hour you choose. No charge to reserve it. Ask the desk a day ahead, as there are only six.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="A table on the sand at sunset" data-src="images/am-sunset-table.jpg" role="img" aria-label="Photograph of a table on the sand at sunset to follow"></figure>
           </li>
-          <li class="amenity">
-            <svg class="amenity__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
-              <rect x="4.5" y="6.5" width="23" height="16" rx="3" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M4.5 12.5h23M12 6.5v6M20 6.5v6" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M9 22.5v2.5M23 22.5v2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <circle cx="10.5" cy="18" r="1.2" fill="currentColor"/>
-              <circle cx="21.5" cy="18" r="1.2" fill="currentColor"/>
-            </svg>
-            <h3>Shuttle to Candolim beach</h3>
-            <p>Runs to the Candolim beach road every thirty minutes, from seven in the morning until eleven.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">The Care Desk</h3>
+              <p class="amen__text">One number for everything: a table, a taxi, a doctor, a late arrival. Someone picks up at three in the morning, and a doctor attends in your room rather than the lobby. The hospital is 6 km away.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="The Care Desk" data-src="images/am-care-desk.jpg" role="img" aria-label="Photograph of the care desk to follow"></figure>
           </li>
-        </ul>
-
-        <p class="amenities__foot">
-          All of it is already inside the <span class="num">&#8377;40,120</span> on your booking.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         4b. AMENITIES ON REQUEST
-         Pets, step-free access, cots, diet, parking. Shown as amenities,
-         so a guest never has to wonder whether the hotel accommodates
-         them, and never cancels because it was left unsaid.
-         ============================================================ -->
-    <section class="section section--raised" id="request" aria-labelledby="requestTitle">
-      <div class="shell">
-        <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--clay">Ask the desk</p>
-          <h2 class="section__title" id="requestTitle">Amenities on request</h2>
-          <p class="section__sub">Already here. Tell the desk and it is ready before you arrive.</p>
-          <span class="rule" aria-hidden="true"></span>
-        </header>
-
-        <ul class="request-list">
-          <li class="rq">
-            <h3 class="rq__k">Dogs</h3>
-            <p class="rq__v">Up to 15 kg, in Garden rooms. &#8377;600 a night. Not in Ocean-View rooms.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Step-free access</h3>
+              <p class="amen__text">A lift to every floor and no step into Room 214 or its shower. Grab bars are fitted beside the bath and the WC at no charge. Ask before you fly and they are in place when you arrive.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Step-free access" data-src="images/am-access.jpg" role="img" aria-label="Photograph of step-free access to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Step-free access</h3>
-            <p class="rq__v">A lift to every floor, and no step into Room 214 or its shower. Grab bars fitted free.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Travelling with children</h3>
+              <p class="amen__text">A cot and a high chair at no charge, and the kitchen will cook plain food off the menu. An extra bed for an older child is &#8377;1,800 a night.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Travelling with children" data-src="images/am-children.jpg" role="img" aria-label="Photograph of travelling with children to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Children</h3>
-            <p class="rq__v">Cot and high chair at no charge. An extra bed is &#8377;1,800 a night.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--pay">Priced</p>
+              <h3 class="amen__title">Dogs</h3>
+              <p class="amen__text">Up to 15 kg, in Garden rooms only, at &#8377;600 a night. A bed and bowls are in the room before you arrive. Not in Ocean-View rooms, so this would mean moving yours.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Dogs" data-src="images/am-dogs.jpg" role="img" aria-label="Photograph of dogs to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Food and allergies</h3>
-            <p class="rq__v">Jain, vegan and low-spice cooked to order. Tell the kitchen a day ahead.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">The kitchen</h3>
+              <p class="amen__text">Jain, vegan, gluten-free and low-spice are cooked to order rather than adapted. Tell the kitchen a day ahead and the chef comes out to confirm it with you.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="The kitchen" data-src="images/am-kitchen.jpg" role="img" aria-label="Photograph of the kitchen to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Parking</h3>
-            <p class="rq__v">Free on the property, with valet at the door.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Parking and valet</h3>
+              <p class="amen__text">Free on the property, with valet at the door. Covered, and the gate is manned through the night.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Parking and valet" data-src="images/am-parking.jpg" role="img" aria-label="Photograph of parking and valet to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Early arrival</h3>
-            <p class="rq__v">Rooms are held from 2 pm. Earlier depends on the night before, so ask and we will try.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--pay">Priced</p>
+              <h3 class="amen__title">Laundry and room service</h3>
+              <p class="amen__text">Laundry comes back the same day if it is in by nine, priced per piece. Room service runs through the night at menu price.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Laundry and room service" data-src="images/am-laundry.jpg" role="img" aria-label="Photograph of laundry and room service to follow"></figure>
           </li>
-          <li class="rq">
-            <h3 class="rq__k">Laundry</h3>
-            <p class="rq__v">Back the same day if it is in by 9 am. Priced per piece.</p>
-          </li>
-          <li class="rq">
-            <h3 class="rq__k">A doctor</h3>
-            <p class="rq__v">On call at any hour, seen in your room. The hospital is 6 km away.</p>
+          <li class="amen__row">
+            <div class="amen__body">
+              <p class="tag tag--inc">Included</p>
+              <h3 class="amen__title">Shuttle to Candolim beach</h3>
+              <p class="amen__text">Every thirty minutes from seven in the morning until eleven at night, to the beach road and back. The walk is six minutes if you would rather.</p>
+            </div>
+            <figure class="amen__media is-missing" data-label="Shuttle to Candolim beach" data-src="images/am-shuttle.jpg" role="img" aria-label="Photograph of shuttle to candolim beach to follow"></figure>
           </li>
         </ul>
       </div>
@@ -474,8 +466,8 @@
 
             <button class="action" type="button" id="btnExtras"
                     aria-expanded="false" aria-controls="drawerExtras">
-              <span class="action__title">Spa, dinner or a night</span>
-              <span class="action__text">Priced before you confirm.</span>
+              <span class="action__title">Add before you arrive</span>
+              <span class="action__text">Spa, dinner or an extra night.</span>
             </button>
 
             <a class="action" href="tel:+918320000000">
@@ -704,6 +696,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=15"></script>
 </body>
 </html>

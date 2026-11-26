@@ -1494,3 +1494,94 @@ section[id], body[id] { scroll-margin-top: calc(var(--header-h) + 14px); }
   font-weight: 500;
   color: var(--on-night);
 }
+
+
+/* --------------------------------------------------------------------
+   17.6  Amenities — one list, each row carrying its own price label
+   Included and priced sat in separate sections before, which meant the
+   cost of a thing depended on where you happened to be reading. The
+   label now travels with the amenity.
+   -------------------------------------------------------------------- */
+:root { --priced: #8A5A2B; }   /* 5.1:1 on limewash */
+
+.amen {
+  display: grid;
+  gap: clamp(1.6rem, 3vw, 2.7rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.amen__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  align-items: center;
+  padding-bottom: clamp(1.6rem, 3vw, 2.7rem);
+  border-bottom: 1px solid var(--line);
+}
+.amen__row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+@media (min-width: 820px) {
+  .amen__row { grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4.5vw, 3.6rem); }
+  .amen__row:nth-child(even) .amen__media { order: -1; }
+}
+
+.amen__title {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: 1.2;
+}
+.amen__text {
+  margin-top: 0.6rem;
+  max-width: 46ch;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+.amen__media {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--shell-deep);
+  box-shadow: var(--shadow);
+}
+/* height:auto or the width/height attributes win over aspect-ratio */
+.amen__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* Until a photograph exists, the slot names itself rather than showing
+   a broken-image icon. script.js adds this class on load failure. */
+.amen__media.is-missing {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, var(--shell-deep), var(--card-hover));
+  border: 1px dashed var(--line-firm);
+  box-shadow: none;
+}
+.amen__media.is-missing::after {
+  content: attr(data-label);
+  padding: 0 1.2rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink-quiet);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.tag--inc { color: var(--jade);   background: rgba(53, 112, 93, 0.09); }
+.tag--pay { color: var(--priced); background: rgba(138, 90, 43, 0.10); }
