@@ -731,8 +731,24 @@
       }
     }
 
+    /* Clicking faster than the smooth scroll animates used to lose
+       ground, because each scrollBy started from wherever the animation
+       had got to rather than from where the last click was heading.
+       Aiming at a remembered target makes rapid clicks accumulate one
+       card each; the target is forgotten shortly after the last press,
+       so a later drag or wheel starts from the real position. */
+    var aim = null;
+    var aimTimer = null;
+
     function nudge(dir) {
-      rail.scrollBy({ left: dir * step(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      var max = rail.scrollWidth - rail.clientWidth;
+      var from = (aim === null) ? rail.scrollLeft : aim;
+      aim = Math.max(0, Math.min(max, from + dir * step()));
+
+      rail.scrollTo({ left: aim, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+
+      window.clearTimeout(aimTimer);
+      aimTimer = window.setTimeout(function () { aim = null; }, 700);
     }
 
     if (railPrev) railPrev.addEventListener('click', function () { nudge(-1); });
